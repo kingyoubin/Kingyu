@@ -1,0 +1,129 @@
+# Type
+class Type:
+    def __init__(self, type_name):
+        self.type_name = type_name
+
+class VarName:
+    def __init__(self, var_name):
+        self.var_name = var_name
+
+# Expression
+class Expr:
+    pass
+
+class ECst(Expr):
+    def __init__(self, const):
+        self.const = const
+
+class EVar(Expr):
+    def __init__(self, var_name):
+        self.var_name = VarName(var_name)
+
+class EBinOp(Expr):
+    def __init__(self, op, left_expr, right_expr):
+        self.op = op
+        self.left_expr = left_expr
+        self.right_expr = right_expr
+
+class EUnaryOp(Expr):
+    def __init__(self, op, expr):
+        self.op = op
+        self.expr = expr
+
+class Const:
+    pass
+
+class CInt(Const):
+    def __init__(self, value):
+        self.value = value
+
+class CBool(Const):
+    def __init__(self, value):
+        self.value = value
+
+class Op:
+    pass
+
+class OpAdd(Op):
+    pass
+
+class OpSub(Op):
+    pass
+
+class OpMul(Op):
+    pass
+
+class OpDiv(Op):
+    pass
+
+class OpMod(Op):
+    pass
+
+class OpLessThan(Op):
+    pass
+
+class OpEqual(Op):
+    pass
+
+class OpAnd(Op):
+    pass
+
+class OpOr(Op):
+    pass
+
+class OpNot(Op):
+    pass
+
+# Statement
+class Comm:
+    pass
+
+class CSkip(Comm):
+    pass
+
+class CSeq(Comm):
+    def __init__(self, left_comm, right_comm):
+        self.left_comm = left_comm
+        self.right_comm = right_comm
+
+class CAssign(Comm):
+    def __init__(self, var_name, expr):
+        self.var_name = VarName(var_name)
+        self.expr = expr
+
+class CRead(Comm):
+    def __init__(self, var_name):
+        self.var_name = VarName(var_name)
+
+class CWrite(Comm):
+    def __init__(self, expr):
+        self.expr = expr
+
+class CIf(Comm):
+    def __init__(self, expr, then_comm, else_comm):
+        self.expr = expr
+        self.then_comm = then_comm
+        self.else_comm = else_comm
+
+class CWhile(Comm):
+    def __init__(self, expr, body_comm):
+        self.expr = expr
+        self.body_comm = body_comm
+
+class CAssert(Comm):
+    def __init__(self, expr):
+        self.expr = expr
+
+# Program
+class Prog:
+    def __init__(self, decls, comms):
+        self.decls = decls
+        self.comms = comms
+
+class Decls:
+    def __init__(self, decl_list):
+        self.decl_list = decl_list
+
+class Comms:
+    def __init__(self, comm_list):
+        self.comm_list = comm_list
