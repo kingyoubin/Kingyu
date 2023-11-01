@@ -194,17 +194,3 @@ def interp_comm(env: Env, comm: Comm) -> Env:
         else:
             print("Error: Condition in CAssert must be a boolean expression.")
             return env
-
-# Example While program
-progDecls = []
-progComms = [
-    CAssign("x", ECst(CInt(5))),
-    CAssign("y", ECst(CInt(7))),
-    CAssign("z", EBinOp(Op.Add, EVar("x"), EVar("y"))),
-    CWrite(EVar("z")),
-    CIf(EVar("z"), CWrite(ECst(CBool(True))), CWrite(ECst(CBool(False)))
-)]
-
-env = {}
-for comm in progComms:
-    env = interp_comm(env, comm)
